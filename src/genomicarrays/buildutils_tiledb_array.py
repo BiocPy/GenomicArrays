@@ -3,7 +3,6 @@ import shutil
 from typing import Union
 
 import numpy as np
-import pandas as pd
 import tiledb
 
 __author__ = "Jayaram Kancherla"
@@ -114,8 +113,7 @@ def write_frame_intervals_to_tiledb(
     y_idx: int,
     value_dtype: np.dtype = np.float32,
 ):
-    """Append and save array data to TileDB.
-    Expect data for one full sample (column).
+    """Append and save array data to TileDB. Expect data for one full sample (column).
 
     Args:
         tiledb_array_uri:

@@ -67,17 +67,17 @@ garr.build_genomicarray(
      files=bw_files,
      output_path=tempdir,
      features=features,
-     # agg function to summarize mutiple values 
+     # agg function to summarize mutiple values
      # from bigwig within an input feature interval.
-     feature_annotation_options=garr.FeatureAnnotationOptions( 
+     feature_annotation_options=garr.FeatureAnnotationOptions(
         aggregate_function = np.nanmean
      ),
      # for parallel processing multiple bigwig files
-     num_threads=4 
+     num_threads=4
 )
 ```
 
-The build process stores missing intervals from a bigwig file as `np.nan`. The 
+The build process stores missing intervals from a bigwig file as `np.nan`. The
 default is to choose an aggregate functions that works with `np.nan`.
 
 

@@ -43,8 +43,7 @@ def extract_bw_intervals_as_vec(
     agg_func: callable = np.nanmean,
     val_dtype: np.dtype = np.float32,
 ) -> np.ndarray:
-    """Extract data from BigWig for a given region
-    and apply the aggregate function.
+    """Extract data from BigWig for a given region and apply the aggregate function.
 
     Args:
         bw_path:

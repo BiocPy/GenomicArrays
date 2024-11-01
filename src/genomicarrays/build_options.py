@@ -10,8 +10,7 @@ __license__ = "MIT"
 
 @dataclass
 class MatrixOptions:
-    """Optional arguments for the ``matrix`` store for
-    :py:func:`~genomicarrays.build_genomicarray.build_genomicarray`.
+    """Optional arguments for the ``matrix`` store for :py:func:`~genomicarrays.build_genomicarray.build_genomicarray`.
 
     Attributes:
         matrix_attr_name:
@@ -62,8 +61,7 @@ class MatrixOptions:
 
 @dataclass
 class SampleMetadataOptions:
-    """Optional arguments for the ``sample`` store for
-    :py:func:`~genomicarrays.build_genomicarray.build_genomicarray`.
+    """Optional arguments for the ``sample`` store for :py:func:`~genomicarrays.build_genomicarray.build_genomicarray`.
 
     Attributes:
         skip:
@@ -97,8 +95,7 @@ class SampleMetadataOptions:
 
 @dataclass
 class FeatureAnnotationOptions:
-    """Optional arguments for the ``feature`` store for
-    :py:func:`~genomicarrays.build_genomicarray.build_genomicarray`.
+    """Optional arguments for the ``feature`` store for :py:func:`~genomicarrays.build_genomicarray.build_genomicarray`.
 
     Attributes:
         skip:
