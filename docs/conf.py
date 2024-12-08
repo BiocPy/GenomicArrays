@@ -179,9 +179,6 @@ autodoc_default_options = {
 autosummary_generate = True
 autosummary_imported_members = True
 
-
-
-
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for

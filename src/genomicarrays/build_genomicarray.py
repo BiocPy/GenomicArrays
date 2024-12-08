@@ -174,9 +174,7 @@ def build_genomicarray(
             missing = required_cols - set(input_intervals.columns)
             raise ValueError(f"Missing required columns: {missing}")
     else:
-        raise TypeError(
-            "'input_intervals' is not an expected type (either 'str' or 'Dataframe')."
-        )
+        raise TypeError("'input_intervals' is not an expected type (either 'str' or 'Dataframe').")
 
     # append start index for each interval
     input_intervals["widths"] = input_intervals["ends"] - input_intervals["starts"]
@@ -190,16 +188,13 @@ def build_genomicarray(
         counter = [1] * len(input_intervals)
         total_length = len(input_intervals)
         counter[0] = 0
-        input_intervals["genarr_feature_start_index"] = (
-            pd.Series(counter).cumsum().astype(int)
-        )
+        input_intervals["genarr_feature_start_index"] = pd.Series(counter).cumsum().astype(int)
 
     ends = input_intervals["genarr_feature_start_index"].shift(-1)
     ends.iloc[-1] = total_length
     input_intervals["genarr_feature_end_index"] = ends.astype(int)
 
     if not feature_annotation_options.skip:
-
         if "sequence" not in input_intervals.columns:
             gen_fa = Fasta(genome_fasta, as_raw=True)
             sequences = []
@@ -209,19 +204,13 @@ def build_genomicarray(
 
             input_intervals["sequences"] = sequences
 
-        _col_types = utf.infer_column_types(
-            input_intervals, feature_annotation_options.column_types
-        )
+        _col_types = utf.infer_column_types(input_intervals, feature_annotation_options.column_types)
 
         if "genarr_feature_index" not in input_intervals.columns:
             input_intervals["genarr_feature_index"] = range(0, len(input_intervals))
 
-        _feature_output_uri = (
-            f"{output_path}/{feature_annotation_options.tiledb_store_name}"
-        )
-        utf.create_tiledb_frame_from_dataframe(
-            _feature_output_uri, input_intervals, column_types=_col_types
-        )
+        _feature_output_uri = f"{output_path}/{feature_annotation_options.tiledb_store_name}"
+        utf.create_tiledb_frame_from_dataframe(_feature_output_uri, input_intervals, column_types=_col_types)
 
         if optimize_tiledb:
             uta.optimize_tiledb_array(_feature_output_uri)
@@ -251,16 +240,10 @@ def build_genomicarray(
         raise TypeError("'sample_metadata' is not an expected type.")
 
     if not sample_metadata_options.skip:
-        _col_types = utf.infer_column_types(
-            sample_metadata, sample_metadata_options.column_types
-        )
+        _col_types = utf.infer_column_types(sample_metadata, sample_metadata_options.column_types)
 
-        _sample_output_uri = (
-            f"{output_path}/{sample_metadata_options.tiledb_store_name}"
-        )
-        utf.create_tiledb_frame_from_dataframe(
-            _sample_output_uri, sample_metadata, column_types=_col_types
-        )
+        _sample_output_uri = f"{output_path}/{sample_metadata_options.tiledb_store_name}"
+        utf.create_tiledb_frame_from_dataframe(_sample_output_uri, sample_metadata, column_types=_col_types)
 
         if optimize_tiledb:
             uta.optimize_tiledb_array(_sample_output_uri)
@@ -311,9 +294,7 @@ def build_genomicarray(
     )
 
 
-def _write_intervals_to_tiledb(
-    outpath, intervals, bwpath, bwidx, agg_func, total_length
-):
+def _write_intervals_to_tiledb(outpath, intervals, bwpath, bwidx, agg_func, total_length):
     """Wrapper to extract the data for the given intervals from the bigwig file and write the output to the tiledb
     file."""
     data = ubw.wrapper_extract_bw_values(
@@ -330,6 +311,4 @@ def _write_intervals_to_tiledb(
 def _wrapper_extract_bwinfo(args):
     """Wrapper for multiprocessing multiple files and intervals."""
     counts_uri, input_intervals, bwpath, idx, agg_func, total_length = args
-    return _write_intervals_to_tiledb(
-        counts_uri, input_intervals, bwpath, idx, agg_func, total_length
-    )
+    return _write_intervals_to_tiledb(counts_uri, input_intervals, bwpath, idx, agg_func, total_length)
